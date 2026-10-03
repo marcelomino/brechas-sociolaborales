@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="brechas_sociolaborales_files/libs/clipboard/clipboard.min.js"></script>
+<script src="brechas_sociolaborales_files/libs/quarto-html/tabby.min.js"></script>
+<script src="brechas_sociolaborales_files/libs/quarto-html/popper.min.js"></script>
+<script src="brechas_sociolaborales_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="brechas_sociolaborales_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="brechas_sociolaborales_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="brechas_sociolaborales_files/libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.24">
+
+  <meta name="author" content="Marcelo Miño Ortiz">
+  <title>Diagnóstico de brechas sociolaborales</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="brechas_sociolaborales_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="brechas_sociolaborales_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="brechas_sociolaborales_files/libs/revealjs/dist/theme/quarto-0c29d042219df274787907a5edbb303e.css">
+  <link href="brechas_sociolaborales_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="brechas_sociolaborales_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="brechas_sociolaborales_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="brechas_sociolaborales_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <!-- Fuentes locales (assets/fonts/): la presentación funciona sin internet -->
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <!-- Motivos de paisaje del tema «austral» (R/motivos_paisaje.R). Van aquí porque
+       las rutas url() del SCSS compilado no apuntan a assets/. -->
+  <style>
+    .reveal-viewport { background-color: #0B1117; }
+    .reveal-viewport::before,
+    .reveal-viewport::after { content: ""; position: fixed; left: 0; right: 0; pointer-events: none; z-index: 0; }
+    /* curvas de nivel, más visibles hacia los bordes */
+    .reveal-viewport::before {
+      top: 0; bottom: 0;
+      background: url(assets/images/topo.svg) center / cover no-repeat;
+      opacity: 0.09;
+      -webkit-mask-image: radial-gradient(ellipse 70% 65% at 45% 50%, transparent 20%, #000 95%);
+              mask-image: radial-gradient(ellipse 70% 65% at 45% 50%, transparent 20%, #000 95%);
+    }
+    /* horizonte del Paine en el borde inferior */
+    .reveal-viewport::after {
+      bottom: 0; height: 12vh;
+      background: url(assets/images/horizonte.svg) bottom / 100% 100% no-repeat;
+      opacity: 0.55;
+    }
+  </style>
+  <link href="brechas_sociolaborales_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+  <script src="brechas_sociolaborales_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <script src="brechas_sociolaborales_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="brechas_sociolaborales_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+  <script src="brechas_sociolaborales_files/libs/leaflet-1.3.1/leaflet.js"></script>
+  <link href="brechas_sociolaborales_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+  <script src="brechas_sociolaborales_files/libs/proj4-2.6.2/proj4.min.js"></script>
+  <script src="brechas_sociolaborales_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="brechas_sociolaborales_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+  <script src="brechas_sociolaborales_files/libs/leaflet-binding-2.2.3/leaflet.js"></script>
+  <script src="brechas_sociolaborales_files/libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+  <script src="brechas_sociolaborales_files/libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#0B1117" data-background-opacity="0.9" data-background-size="cover" data-background-video="assets/video/portada_completa.mp4" data-background-video-loop="true" data-background-video-muted="true" data-video-velocidad="0.8" class="quarto-title-block center">
+  <h1 class="title">Diagnóstico de brechas <em>sociolaborales</em></h1>
+  <p class="subtitle">Desafíos urgentes en tiempos de incertidumbre</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Marcelo Miño Ortiz 
+</div>
+        <p class="quarto-title-affiliation">
+            Unidad de Estudios Regionales — Universidad de Magallanes
+          </p>
+    </div>
+</div>
+
+  <p class="date">5 de junio, 2025</p>
+</section>
+<section id="section" class="slide level2 center cifra-slide">
+<h2></h2>
+<p><span class="cifra-kicker">ESI 2017–2023 · ingreso de la ocupación principal · Magallanes</span></p>
+<p><span class="cifra-gigante"><span class="countup" data-to="23" data-duration="1400">23</span><span class="unidad">%</span></span></p>
+<p><span class="cifra-desc">menos ganan, en promedio, las mujeres ocupadas de Magallanes que los hombres en su ocupación principal (2023).</span></p>
+<div class="comparacion" role="img" aria-label="Ingreso promedio 2023: hombres 1.034 mil pesos, mujeres 792 mil pesos.">
+  <div class="c-fila"><span class="c-nom">Hombres</span><span class="c-barra"><i style="--v:100%"></i></span><span class="c-val">$1.034 mil</span></div>
+  <div class="c-fila c-fila--m"><span class="c-nom">Mujeres</span><span class="c-barra"><i style="--v:76.6%"></i></span><span class="c-val">$792 mil</span></div>
+</div>
+<p><span class="fuente">Fuente: elaboración propia sobre la base de la ESI 2017–2023</span></p>
+<aside class="notes">
+<p>Abrir con la brecha de ingresos por sexo y dejarla respirar. Se retoma en el capítulo 05.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-1" class="slide level2 indice-slide sin-logo sin-cabezal">
+<h2></h2>
+<p><img data-src="assets/images/boletin/indice.jpg" class="indice-foto" alt="Estepa magallánica con ovejas pastando y un casco de estancia al fondo."></p>
+<p><span class="indice-marca">Unidad de Estudios Regionales</span></p>
+<div class="indice-rotulo">
+<p>ÍN<br>
+DI<br>
+CE</p>
+</div>
+<div class="indice-lista">
+<p><span class="i-grupo">Plan de la presentación</span></p>
+<div class="i-item">
+<p><span class="i-num">01</span> <span class="i-tit">Descripción del estudio</span> <span class="i-pag">4</span></p>
+</div>
+<div class="i-item">
+<p><span class="i-num">02</span> <span class="i-tit">Aspectos económicos del desarrollo</span> <span class="i-pag">5</span></p>
+</div>
+<div class="i-item">
+<p><span class="i-num">03</span> <span class="i-tit">Perfiles comunales</span> <span class="i-pag">10</span></p>
+</div>
+<div class="i-item">
+<p><span class="i-num">04</span> <span class="i-tit">El fenómeno de la conmutación laboral</span> <span class="i-pag">16</span></p>
+</div>
+<div class="i-item">
+<p><span class="i-num">05</span> <span class="i-tit">Calidad del empleo y brechas de género</span> <span class="i-pag">19</span></p>
+</div>
+<div class="i-item">
+<p><span class="i-num">06</span> <span class="i-tit">Aspectos subjetivos del desarrollo regional</span> <span class="i-pag">23</span></p>
+</div>
+</div>
+<p><span class="credito">Fotografía Boletín de Estudios Regionales N°2</span></p>
+<!-- ═════════════════════════════════════════════════════════════════════════
+     01 · DESCRIPCIÓN DEL ESTUDIO
+     ═════════════════════════════════════════════════════════════════════════ -->
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<div class="cabecera">
+<p><span class="cab-num">01</span></p>
+<div class="cab-titulo">
+<p>Estudio de brechas sociolaborales y de <em>cuidados</em></p>
+</div>
+</div>
+<div class="hallazgos">
+<div class="hallazgo fragment fade-up">
+<p><strong>Perspectiva</strong></p>
+<p>Identificar desafíos presentes y futuros.</p>
+<p>Diagnosticar las problemáticas de género, cuidados, calidad del empleo y condiciones para el desarrollo futuro de Magallanes y sus territorios.</p>
+</div>
+<div class="hallazgo fragment fade-up">
+<p><strong>Metodología</strong></p>
+<p>Enfoque mixto: métodos cuantitativos y cualitativos.</p>
+</div>
+<div class="hallazgo fragment fade-up">
+<p><strong>Fuentes</strong></p>
+<p>ENE y ESI · registros del SII y del Ministerio de Desarrollo Social · CASEN 2009, 2015 y 2022.</p>
+<p>De manera inédita, la Encuesta Barómetro Regional, trabajo colaborativo entre universidades públicas regionales.</p>
+</div>
+</div>
+<!-- ═════════════════════════════════════════════════════════════════════════
+     02 · ASPECTOS ECONÓMICOS DEL DESARROLLO
+     ═════════════════════════════════════════════════════════════════════════ -->
+</section>
+<section id="section-3" class="slide level2" data-auto-animate="true" data-background-image="assets/images/boletin/cap_azul.jpg" data-background-size="cover" data-background-color="#0B1230" data-background-opacity="0.78">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="divisor">
+<p><span class="div-num" data-id="num-2">02</span></p>
+<div class="div-titulo" data-id="tit-2">
+<p>Aspectos económicos del <em>desarrollo</em></p>
+</div>
+<div class="div-sub-linea">
+<p><span class="div-sub">Crecimiento, estructura productiva y ocupación</span></p>
+</div>
+</div>
+<p><span class="credito">Fotografía Andrea Barría · Boletín N°2</span></p>
+</section>
+<section id="section-4" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="cabecera">
+<p><span class="cab-num" data-id="num-2">02</span></p>
+<div class="cab-titulo" data-id="tit-2">
+<p>Aspectos económicos del <em>desarrollo</em></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Crecimiento económico · variación anual del PIB (%)</span><span class="panel-meta">2014–2023</span></div><div class="echart" data-tipo="lineas" style="height:520px" role="img" aria-label="Variación anual del PIB nacional y de Magallanes entre 2014 y 2023. Magallanes cae 12,7 % en 2020, más que el país."><script type="application/json">{"datos":[{"anio":2014,"magallanes":5.98,"nacional":1.79},{"anio":2015,"magallanes":2.35,"nacional":2.15},{"anio":2016,"magallanes":5.26,"nacional":1.75},{"anio":2017,"magallanes":2.29,"nacional":1.36},{"anio":2018,"magallanes":-1.06,"nacional":3.99},{"anio":2019,"magallanes":5.04,"nacional":0.63},{"anio":2020,"magallanes":-12.66,"nacional":-6.14},{"anio":2021,"magallanes":7.55,"nacional":11.33},{"anio":2022,"magallanes":6.36,"nacional":2.06},{"anio":2023,"magallanes":-1.45,"nacional":0.22}],"opciones":{"x":"anio","unidad":" %","min":-15,"max":15,"intervalo":5,"cero":true,"derecha":170,"series":[{"campo":"nacional","nombre":"Nacional","color":"#8A9BA8","ancho":2.5},{"campo":"magallanes","nombre":"Magallanes","color":"#E82D88","colorTexto":"#FF6FB2","ancho":4.5,"destacar":true,"paso":1,"marca":{"x":2020,"y":-12.66,"texto":"−12,7 %"}}]}}</script></div></div>
+</div>
+</div>
+<p><span class="fragment paso"></span></p>
+<p><span class="fuente">Fuente: Banco Central de Chile</span></p>
+<aside class="notes">
+<p>Primero la serie nacional; al avanzar aparece Magallanes, más volátil y con una caída más profunda en 2020.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="áreas-de-actividad-económica" class="slide level2">
+<h2>Áreas de actividad <em>económica</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Participación en el PIB regional (%)</span><span class="panel-meta">2013 → 2023</span></div><div class="echart" data-tipo="dumbbell" style="height:560px" role="img" aria-label="Participación de cada área de actividad en el PIB regional, 2013 y 2023. Servicios personales pasa de 11,8 % a 15,3 % e industria manufacturera de 5,5 % a 9,2 %."><script type="application/json">{"datos":[{"rama":"Agropecuario-silvícola","a2013":1.7,"a2023":2},{"rama":"Electricidad, gas, agua y desechos","a2013":2.3,"a2023":3},{"rama":"Restaurantes y hoteles","a2013":3.3,"a2023":3.2},{"rama":"Pesca","a2013":2.3,"a2023":3.9},{"rama":"Comercio","a2013":6.8,"a2023":5.9},{"rama":"Minería","a2013":6.5,"a2023":6.6},{"rama":"Construcción","a2013":8.5,"a2023":6.8},{"rama":"Transporte, información y comunicaciones","a2013":7.8,"a2023":9},{"rama":"Servicios de vivienda e inmobiliarios","a2013":9.3,"a2023":9.1},{"rama":"Industria manufacturera","a2013":5.5,"a2023":9.2},{"rama":"Servicios financieros y empresariales","a2013":15.6,"a2023":11.3},{"rama":"Administración pública","a2013":16,"a2023":14.9},{"rama":"Servicios personales","a2013":11.8,"a2023":15.3}],"opciones":{"cat":"rama","a":"a2013","b":"a2023","la":"2013","lb":"2023","unidad":" %","min":0}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: Banco Central de Chile · Δ pp: diferencia en puntos porcentuales</span></p>
+</section>
+<section id="ocupados-por-área-de-actividad" class="slide level2">
+<h2>Ocupados por área de <em>actividad</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Distribución de los ocupados (%)</span><span class="panel-meta">2013 → 2023</span></div><div class="echart" data-tipo="dumbbell" style="height:560px" role="img" aria-label="Distribución de ocupados por área de actividad, 2013 y 2023. Comercio concentra 16,7 % en 2023; administración pública baja de 15,2 % a 11,5 %."><script type="application/json">{"datos":[{"rama":"Otras actividades","a2013":20.48,"a2023":17.53},{"rama":"Alojamiento y servicio de comidas","a2013":6,"a2023":5.62},{"rama":"Agricultura, ganadería, silvicultura y pesca","a2013":5.69,"a2023":6.32},{"rama":"Salud humana y asistencia social","a2013":4.37,"a2023":7.85},{"rama":"Transporte y almacenamiento","a2013":8.18,"a2023":8.22},{"rama":"Enseñanza","a2013":5.84,"a2023":8.26},{"rama":"Industrias manufactureras","a2013":7.91,"a2023":8.65},{"rama":"Construcción","a2013":10,"a2023":9.19},{"rama":"Administración pública y defensa","a2013":15.17,"a2023":11.45},{"rama":"Comercio al por mayor y al por menor","a2013":16.37,"a2023":16.71}],"opciones":{"cat":"rama","a":"a2013","b":"a2023","la":"2013","lb":"2023","unidad":" %","min":0}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: elaboración propia sobre la base de la ENE 2023</span></p>
+</section>
+<section id="ocupados-según-grupo-ocupacional" class="slide level2">
+<h2>Ocupados según grupo <em>ocupacional</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Distribución de los ocupados (%)</span><span class="panel-meta">2017 → 2023</span></div><div class="echart" data-tipo="dumbbell" style="height:560px" role="img" aria-label="Distribución de ocupados por grupo ocupacional, 2017 y 2023. Ocupaciones elementales sube de 11,7 % a 16,5 %."><script type="application/json">{"datos":[{"grupo":"Agricultores y trabajadores agropecuarios y pesqueros","a2017":3.2,"a2023":2.4},{"grupo":"Directores, gerentes y administradores","a2017":9.9,"a2023":6.8},{"grupo":"Personal de apoyo administrativo","a2017":11.4,"a2023":7.5},{"grupo":"Operadores de instalaciones y máquinas","a2017":8.4,"a2023":7.9},{"grupo":"Artesanos y operarios de oficios","a2017":12,"a2023":12.7},{"grupo":"Técnicos y profesionales de nivel medio","a2017":12.3,"a2023":13.9},{"grupo":"Profesionales científicos e intelectuales","a2017":15.4,"a2023":14.9},{"grupo":"Ocupaciones elementales","a2017":11.7,"a2023":16.5},{"grupo":"Trabajadores de servicios y comercio","a2017":15.8,"a2023":17.4}],"opciones":{"cat":"grupo","a":"a2017","b":"a2023","la":"2017","lb":"2023","unidad":" %","min":0}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: elaboración propia sobre la base de la ENE 2023</span></p>
+<!-- ═════════════════════════════════════════════════════════════════════════
+     03 · PERFILES COMUNALES
+     ═════════════════════════════════════════════════════════════════════════ -->
+</section>
+<section id="section-5" class="slide level2" data-background-image="assets/images/boletin/cap_violeta.jpg" data-background-size="cover" data-background-color="#1A0A2A" data-background-opacity="0.78">
+<h2></h2>
+<div class="divisor">
+<p><span class="div-num">03</span></p>
+<div class="div-titulo">
+<p>Perfiles <em>comunales</em></p>
+</div>
+<div class="div-sub-linea">
+<p><span class="div-sub">Punta Arenas, Natales, Porvenir y Cabo de Hornos</span></p>
+</div>
+</div>
+<p><span class="credito">Fotografía Rafael Cheuquelaf · Boletín N°2</span></p>
+</section>
+<section id="section-6" class="slide level2 mapa-slide" data-background-color="#0B1117">
+<h2></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-7e1501d4d8e406597fab" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-7e1501d4d8e406597fab">{"x":{"options":{"minZoom":3,"maxZoom":11,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"zoomControl":false},"calls":[{"method":"addTiles","args":["assets/tiles/{z}/{x}/{y}.jpg",null,null,{"minZoom":3,"maxZoom":11,"maxNativeZoom":8,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"NASA Blue Marble"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[-53.1638,-51.7236,-53.2956,-54.9352],[-70.9171,-72.5064,-70.3686,-67.61660000000001],22,null,null,{"interactive":true,"className":"","stroke":true,"color":"#6FD3E0","weight":1,"opacity":0.6,"fill":false,"fillColor":"#6FD3E0","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[[-51.7236,-53.2956,-54.9352],[-72.5064,-70.3686,-67.61660000000001],9,null,null,{"interactive":true,"className":"","stroke":true,"color":"#0B1117","weight":2,"opacity":0.5,"fill":true,"fillColor":"#E82D88","fillOpacity":1},null,null,["<b>Natales<\/b><br>51.72° S · 72.51° W<br><br>55 % asalariados privados · 19 % públicos · 23 % cuenta propia","<b>Porvenir<\/b><br>53.30° S · 70.37° W<br><br>62 % asalariados privados · 16 % públicos · 14 % cuenta propia","<b>Cabo de Hornos<\/b><br>54.94° S · 67.62° W<br><br>60 % asalariados públicos · 23 % privados · 10 % cuenta propia"],null,["NATALES<br><span style='font-weight:400;opacity:.75;font-size:14px'>51.72° S · 72.51° W<\/span>","PORVENIR<br><span style='font-weight:400;opacity:.75;font-size:14px'>53.30° S · 70.37° W<\/span>","CABO DE HORNOS<br><span style='font-weight:400;opacity:.75;font-size:14px'>54.94° S · 67.62° W<\/span>"],{"interactive":false,"permanent":true,"direction":"right","opacity":1,"offset":[24,0],"textsize":"10px","textOnly":true,"style":{"color":"#FFFFFF","font-size":"18px","line-height":"1.3","text-align":"left","font-family":"JetBrains Mono","font-weight":"600","letter-spacing":"0.06em","text-shadow":"0 1px 4px #000, 0 0 12px #000"},"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[-53.1638,-70.9171,9,null,null,{"interactive":true,"className":"","stroke":true,"color":"#0B1117","weight":2,"opacity":0.5,"fill":true,"fillColor":"#E82D88","fillOpacity":1},null,null,"<b>Punta Arenas<\/b><br>53.16° S · 70.92° W<br><br>54 % asalariados privados · 18 % públicos · 19 % cuenta propia",null,["PUNTA ARENAS<br><span style='font-weight:400;opacity:.75;font-size:14px'>53.16° S · 70.92° W<\/span>"],{"interactive":false,"permanent":true,"direction":"left","opacity":1,"offset":[-24,0],"textsize":"10px","textOnly":true,"style":{"color":"#FFFFFF","font-size":"18px","line-height":"1.3","text-align":"right","font-family":"JetBrains Mono","font-weight":"600","letter-spacing":"0.06em","text-shadow":"0 1px 4px #000, 0 0 12px #000"},"className":"","sticky":true},null]}],"fitBounds":[-55.4,-76.5,-51.4,-66.8,[]],"limits":{"lat":[-54.9352,-51.7236],"lng":[-72.5064,-67.61660000000001]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="mapa-tarjeta">
+<p><span class="titulo">Cuatro comunas, <em>cuatro</em> perfiles</span></p>
+<p><span class="texto">Clic en un punto para ver la categoría ocupacional de cada comuna. Arrastra y haz zoom con la rueda del mouse.</span></p>
+</div>
+</section>
+<section id="comuna-de-punta-arenas" class="slide level2 perfil">
+<h2>Comuna de <em>Punta Arenas</em></h2>
+<p><span class="coord">53°10′S · 70°55′W · comuna 01/04</span></p>
+<div class="kpi-fila">
+<div class="kpi kpi--acento fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="40">40</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Cerca de 4 de cada 10 ocupados en servicios administrativos y de apoyo</span></p>
+</div>
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="54">54</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Asalariados del sector privado</span></p>
+</div>
+<div class="kpi kpi--azul fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="18">18</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Asalariados del sector público</span></p>
+</div>
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="19">19</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Trabajadores por cuenta propia</span></p>
+</div>
+</div>
+<div class="perfil-texto">
+<p>Le siguen la <strong>construcción</strong> y el <strong>alojamiento y servicio de comidas</strong>, rama ligada al turismo; el resto de las ramas reúne menos del 10 % cada una. Por grupo ocupacional, cerca del 20 % trabaja en servicios, 16 % son profesionales y 15 % artesanos y operarios de oficios.</p>
+</div>
+</section>
+<section id="comuna-de-natales" class="slide level2 perfil">
+<h2>Comuna de <em>Natales</em></h2>
+<p><span class="coord">51°43′S · 72°30′W · comuna 02/04</span></p>
+<div class="kpi-fila">
+<div class="kpi kpi--acento fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="37">37</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">De los ocupados en servicios administrativos y de apoyo</span></p>
+</div>
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="55">55</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Asalariados del sector privado</span></p>
+</div>
+<div class="kpi kpi--azul fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="19">19</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Asalariados del sector público</span></p>
+</div>
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="23">23</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Trabajadores por cuenta propia</span></p>
+</div>
+</div>
+<div class="perfil-texto">
+<p>Luego vienen el <strong>alojamiento y servicio de comidas</strong> y la <strong>construcción</strong>. Por grupo ocupacional destacan los trabajadores de servicios (22 %), artesanos y operarios de oficios (17 %), ocupaciones elementales (15 %) y profesionales y científicos (15 %).</p>
+</div>
+</section>
+<section id="comuna-de-porvenir" class="slide level2 perfil">
+<h2>Comuna de <em>Porvenir</em></h2>
+<p><span class="coord">53°18′S · 70°22′W · comuna 03/04</span></p>
+<div class="kpi-fila">
+<div class="kpi kpi--acento fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="60">60</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">De los ocupados en servicios administrativos y de apoyo</span></p>
+</div>
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="62">62</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Asalariados del sector privado</span></p>
+</div>
+<div class="kpi kpi--azul fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="16">16</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Asalariados del sector público</span></p>
+</div>
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="14">14</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Trabajadores por cuenta propia</span></p>
+</div>
+</div>
+<div class="perfil-texto">
+<p>Le siguen las <strong>actividades profesionales, científicas y técnicas</strong> (19 %) y los sectores ligados a la <strong>agricultura</strong> (20 %). Por grupo ocupacional, las ocupaciones elementales son las más relevantes (17 %), seguidas por artesanos, operadores de máquinas y agricultores (15 % cada uno) y trabajadores de servicios (13 %).</p>
+</div>
+</section>
+<section id="comuna-de-cabo-de-hornos" class="slide level2 perfil">
+<h2>Comuna de <em>Cabo de Hornos</em></h2>
+<p><span class="coord">54°56′S · 67°37′W · comuna 04/04</span></p>
+<div class="kpi-fila">
+<div class="kpi kpi--acento fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="33">33</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Profesionales, científicos e intelectuales</span></p>
+</div>
+<div class="kpi kpi--azul fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="60">60</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Asalariados del sector público</span></p>
+</div>
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="23">23</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Asalariados del sector privado</span></p>
+</div>
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="10">10</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Trabajadores por cuenta propia</span></p>
+</div>
+</div>
+<div class="perfil-texto">
+<p>La única comuna donde predomina el <strong>empleo público</strong>. Tras los profesionales siguen los trabajadores de servicios y vendedores de comercio y los técnicos profesionales de nivel medio, con cerca de 17 % cada uno.</p>
+</div>
+<!-- ═════════════════════════════════════════════════════════════════════════
+     04 · CONMUTACIÓN LABORAL
+     ═════════════════════════════════════════════════════════════════════════ -->
+</section>
+<section id="section-7" class="slide level2" data-auto-animate="true" data-background-image="assets/images/boletin/cap_rojo.jpg" data-background-size="cover" data-background-color="#1E0504" data-background-opacity="0.78">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="divisor">
+<p><span class="div-num" data-id="num-4">04</span></p>
+<div class="div-titulo" data-id="tit-4">
+<p>Conmutación <em>laboral</em></p>
+</div>
+<div class="div-sub-linea">
+<p><span class="div-sub">Tasa por región y áreas con mayor conmutación</span></p>
+</div>
+</div>
+<p><span class="credito">Fotografía Rafael Cheuquelaf · Boletín N°2</span></p>
+</section>
+<section id="section-8" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="cabecera">
+<p><span class="cab-num" data-id="num-4">04</span></p>
+<div class="cab-titulo" data-id="tit-4">
+<p>Conmutación <em>laboral</em></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Tasa de conmutación laboral por región (%)</span><span class="panel-meta">ENE 2023 · 16 regiones</span></div><div class="echart" data-tipo="barrasH" style="height:540px" role="img" aria-label="Tasa de conmutación laboral por región. Magallanes tiene la más baja del país, 2,9 %; Antofagasta la más alta, 19,0 %."><script type="application/json">{"datos":[{"region":"Magallanes","tasa":2.9},{"region":"Metropolitana","tasa":3.37},{"region":"Los Lagos","tasa":3.81},{"region":"Maule","tasa":5.19},{"region":"Araucanía","tasa":5.26},{"region":"Los Ríos","tasa":6.22},{"region":"Aysén","tasa":6.89},{"region":"Biobío","tasa":7.47},{"region":"Arica y Parinacota","tasa":8.33},{"region":"O'Higgins","tasa":9.14},{"region":"Valparaíso","tasa":9.59},{"region":"Ñuble","tasa":9.64},{"region":"Coquimbo","tasa":12.64},{"region":"Tarapacá","tasa":15.29},{"region":"Atacama","tasa":18.55},{"region":"Antofagasta","tasa":18.97}],"opciones":{"cat":"region","ordenar":"tasa","tam":16,"tamValor":15,"destacar":{"campo":"region","valor":"Magallanes"},"series":[{"campo":"tasa","nombre":"Tasa de conmutación"}],"unidad":" %"}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: elaboración propia sobre la base de la ENE 2023</span></p>
+</section>
+<section id="conmutación-áreas-con-mayor-tasa" class="slide level2">
+<h2>Conmutación: áreas con mayor <em>tasa</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Cinco áreas con mayor conmutación (%)</span><span class="panel-meta">ENE 2023 · PIB regional 2023</span></div><div class="echart" data-tipo="barrasH" style="height:560px" role="img" aria-label="Tasa de conmutación y participación en el PIB regional de las cinco áreas con mayor conmutación: agricultura y pesca, transporte, electricidad y gas, minería y construcción."><script type="application/json">{"datos":[{"rama":"Agricultura, ganadería, silvicultura y pesca","tasa_conmutacion":8.2,"pct_pib":5.9},{"rama":"Transporte y almacenamiento","tasa_conmutacion":6.8,"pct_pib":9},{"rama":"Electricidad, gas, vapor y aire acondicionado","tasa_conmutacion":6.6,"pct_pib":3},{"rama":"Explotación de minas y canteras","tasa_conmutacion":5.5,"pct_pib":6.6},{"rama":"Construcción","tasa_conmutacion":4.8,"pct_pib":6.8}],"opciones":{"cat":"rama","inverso":true,"envolver":28,"tam":19,"tamValor":18,"unidad":" %","series":[{"campo":"tasa_conmutacion","nombre":"Tasa de conmutación","color":"#E82D88"},{"campo":"pct_pib","nombre":"Participación en el PIB regional","color":"#5B6B78"}]}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: elaboración propia sobre la base de la ENE 2023 y Banco Central de Chile · en porcentaje</span></p>
+<!-- La tasa de conmutación por área se leyó del gráfico original (imagen); ver datos/LEEME.md -->
+<!-- ═════════════════════════════════════════════════════════════════════════
+     05 · CALIDAD DEL EMPLEO Y BRECHAS DE GÉNERO
+     ═════════════════════════════════════════════════════════════════════════ -->
+</section>
+<section id="section-9" class="slide level2" data-auto-animate="true" data-background-image="assets/images/boletin/cap_azul.jpg" data-background-size="cover" data-background-color="#0B1230" data-background-opacity="0.78">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="divisor">
+<p><span class="div-num" data-id="num-5">05</span></p>
+<div class="div-titulo" data-id="tit-5">
+<p>Calidad del empleo y brechas de <em>género</em></p>
+</div>
+<div class="div-sub-linea">
+<p><span class="div-sub">Protección social e ingresos según sexo</span></p>
+</div>
+</div>
+<p><span class="credito">Fotografía Andrea Barría · Boletín N°2</span></p>
+</section>
+<section id="section-10" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="cabecera">
+<p><span class="cab-num" data-id="num-5">05</span></p>
+<div class="cab-titulo" data-id="tit-5">
+<p>Calidad del empleo y brechas de <em>género</em></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Ocupados con cobertura de protección social (%)</span><span class="panel-meta">2010 · 2015 · 2020 · 2023</span></div><div class="echart" data-tipo="lineas" style="height:520px" role="img" aria-label="Cobertura de salud, previsión y seguro de desempleo entre 2010 y 2023. Salud y previsión superan el 90 %; el seguro de desempleo cae de 82,5 % a 66,7 % en 2020 y sube a 74,2 % en 2023."><script type="application/json">{"datos":[{"anio":2010,"salud":86.02,"seguro_desempleo":82.47,"prevision":85.95},{"anio":2015,"salud":90.2,"seguro_desempleo":68.18,"prevision":90.14},{"anio":2020,"salud":93.8,"seguro_desempleo":66.73,"prevision":92.34},{"anio":2023,"salud":92.12,"seguro_desempleo":74.18,"prevision":91.38}],"opciones":{"x":"anio","unidad":" %","min":60,"max":100,"intervalo":10,"valorFinal":true,"derecha":360,"series":[{"campo":"salud","nombre":"Salud","color":"#6FD3E0","offset":[0,-14]},{"campo":"prevision","nombre":"Previsión","color":"#D9B26F","offset":[0,14]},{"campo":"seguro_desempleo","nombre":"Seguro de desempleo","color":"#E82D88","colorTexto":"#FF6FB2","ancho":4.5,"destacar":true,"etiquetas":true}]}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: elaboración propia sobre la base de la ENE</span></p>
+</section>
+<section id="ingresos-de-la-ocupación-principal-según-sexo" class="slide level2 perfil">
+<h2>Ingresos de la ocupación principal según <em>sexo</em></h2>
+<p><span class="coord dato">ESI 2023 · ocupación principal · pesos corrientes</span></p>
+<div class="kpi-fila">
+<div class="kpi fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="925">925</span><span class="kpi-unidad">mil $</span></span> <span class="kpi-label">Ingreso promedio de los ocupados, 2023</span></p>
+</div>
+<div class="kpi kpi--azul fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="1034">1.034</span><span class="kpi-unidad">mil $</span></span> <span class="kpi-label">Hombres</span></p>
+</div>
+<div class="kpi kpi--acento fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="792">792</span><span class="kpi-unidad">mil $</span></span> <span class="kpi-label">Mujeres</span></p>
+</div>
+<div class="kpi kpi--acento fragment fade-up">
+<p><span class="kpi-valor"><span class="countup" data-to="23">23</span><span class="kpi-unidad">%</span></span> <span class="kpi-label">Brecha de ingresos entre hombres y mujeres</span></p>
+</div>
+</div>
+<div class="perfil-texto">
+<p>La brecha llegó a 26 % entre 2018 y 2020, bajó a 19 % en 2021 y volvió a ampliarse hasta <strong>23 %</strong> en 2023.</p>
+</div>
+<p><span class="fuente">Fuente: elaboración propia sobre la base de la ESI 2023 · ingresos en pesos corrientes</span></p>
+</section>
+<section id="la-brecha-de-ingresos-20172023" class="slide level2">
+<h2>La brecha de ingresos, <em>2017–2023</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Ingreso promedio mensual (miles de $) y brecha entre hombres y mujeres</span><span class="panel-meta">ESI 2017–2023</span></div><div class="echart" data-tipo="brecha" style="height:560px" role="img" aria-label="Ingreso promedio de hombres y mujeres entre 2017 y 2023. La brecha es de 22 % en 2017, 26 % entre 2018 y 2020, 19 % en 2021, 20 % en 2022 y 23 % en 2023."><script type="application/json">{"datos":[{"anio":2017,"total":750245,"hombre":829520,"mujer":646046,"brecha":22},{"anio":2018,"total":812144,"hombre":915679,"mujer":674191,"brecha":26},{"anio":2019,"total":822390,"hombre":924255,"mujer":687838,"brecha":26},{"anio":2020,"total":838569,"hombre":942062,"mujer":698260,"brecha":26},{"anio":2021,"total":804453,"hombre":877431,"mujer":710320,"brecha":19},{"anio":2022,"total":847053,"hombre":928762,"mujer":746250,"brecha":20},{"anio":2023,"total":924559,"hombre":1034068,"mujer":792464,"brecha":23}],"opciones":[]}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: elaboración propia sobre la base de la ESI 2017–2023</span></p>
+<!-- ═════════════════════════════════════════════════════════════════════════
+     06 · ASPECTOS SUBJETIVOS DEL DESARROLLO
+     ═════════════════════════════════════════════════════════════════════════ -->
+</section>
+<section id="section-11" class="slide level2" data-auto-animate="true" data-background-image="assets/images/boletin/cap_violeta.jpg" data-background-size="cover" data-background-color="#1A0A2A" data-background-opacity="0.78">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="divisor">
+<p><span class="div-num" data-id="num-6">06</span></p>
+<div class="div-titulo" data-id="tit-6">
+<p>Aspectos subjetivos del <em>desarrollo</em></p>
+</div>
+<div class="div-sub-linea">
+<p><span class="div-sub">Identidad, confianza y expectativas de futuro</span></p>
+</div>
+</div>
+<p><span class="credito">Fotografía Rafael Cheuquelaf · Boletín N°2</span></p>
+</section>
+<section id="section-12" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="cabecera">
+<p><span class="cab-num" data-id="num-6">06</span></p>
+<div class="cab-titulo" data-id="tit-6">
+<p>Aspectos subjetivos del <em>desarrollo</em></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Lugar o territorio con el que más se identifica (%)</span><span class="panel-meta">Barómetro Regional</span></div><div class="echart" data-tipo="barrasV" style="height:520px" role="img" aria-label="Lugar o territorio con el que se identifica la población: su región 28,1 %, su ciudad 23,7 %, su comuna 17,9 %, su barrio 13,2 %, su país 12,1 %."><script type="application/json">{"datos":[{"territorio":"Su región","pct":28.1},{"territorio":"Su ciudad","pct":23.7},{"territorio":"Su comuna","pct":17.9},{"territorio":"Su barrio","pct":13.2},{"territorio":"Su país","pct":12.1},{"territorio":"Su pueblo o localidad","pct":4.5},{"territorio":"NS/NR","pct":0.5}],"opciones":{"cat":"territorio","valor":"pct","nombre":"Se identifica"}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: Encuesta Barómetro Regional</span></p>
+</section>
+<section id="confianza-interpersonal" class="slide level2">
+<h2>Confianza <em>interpersonal</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">«Se puede confiar en la mayoría de las personas» (% de acuerdo)</span><span class="panel-meta">Magallanes vs. Chile</span></div><div class="echart" data-tipo="barrasH" style="height:560px" role="img" aria-label="Porcentaje que cree que se puede confiar en la mayoría de las personas: Chile 15,3 %, Magallanes 54 %; entre quienes se identifican con su región, 59,2 %."><script type="application/json">{"datos":[{"grupo":"Chile (IDH PNUD 2024)","pct":15.3,"tipo":"chile"},{"grupo":"Región de Magallanes","pct":54,"tipo":"region"},{"grupo":"Se identifica con su barrio","pct":42.5,"tipo":"ident"},{"grupo":"Con su pueblo, comuna o ciudad","pct":53.8,"tipo":"ident"},{"grupo":"Con su región","pct":59.2,"tipo":"ident"},{"grupo":"Con su país","pct":53.8,"tipo":"ident"}],"opciones":{"cat":"grupo","inverso":true,"tam":20,"tamValor":20,"unidad":" %","unidadEtiqueta":" %","colores":{"campo":"tipo","mapa":{"chile":"#5B6B78","region":"#E82D88","ident":"#6FD3E0"}},"series":[{"campo":"pct","nombre":"De acuerdo"}]}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: Encuesta Barómetro Regional · Chile: Informe de Desarrollo Humano, PNUD 2024</span></p>
+</section>
+<section id="percepción-de-progreso-de-la-región" class="slide level2">
+<h2>Percepción de <em>progreso</em> de la región</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">¿La región de Magallanes está progresando, estancada o en decadencia? (%)</span><span class="panel-meta">Barómetro Regional</span></div><div class="echart" data-tipo="apiladas" style="height:580px" role="img" aria-label="Percepción de que la región progresa, está estancada o en decadencia, según clase social, GSE, edad y educación. En total, 45 % progresando, 46 % estancada y 9 % en decadencia; la decadencia sube a 15,6 % en el grupo D+E y 16,9 % entre mayores de 60."><script type="application/json">{"datos":[{"variable":"Total","categoria":"Total regional","progresando":45.02,"estancada":45.92,"decadencia":9.06},{"variable":"Clase social","categoria":"Clase alta","progresando":54.7,"estancada":35.8,"decadencia":9.4},{"variable":"Clase social","categoria":"Clase media","progresando":47.6,"estancada":47.9,"decadencia":4.5},{"variable":"Clase social","categoria":"Clase trabajadora","progresando":42.5,"estancada":43.5,"decadencia":14},{"variable":"GSE","categoria":"ABC1","progresando":49,"estancada":44.3,"decadencia":6.8},{"variable":"GSE","categoria":"C2","progresando":51.4,"estancada":44.4,"decadencia":4.2},{"variable":"GSE","categoria":"C3","progresando":40.1,"estancada":52.4,"decadencia":7.5},{"variable":"GSE","categoria":"D+E","progresando":41,"estancada":43.4,"decadencia":15.6},{"variable":"Tramo de edad","categoria":"18-29","progresando":50.4,"estancada":43.8,"decadencia":5.8},{"variable":"Tramo de edad","categoria":"30-44","progresando":51.2,"estancada":45.4,"decadencia":3.4},{"variable":"Tramo de edad","categoria":"45-59","progresando":36.1,"estancada":53.5,"decadencia":10.4},{"variable":"Tramo de edad","categoria":"60+","progresando":41.2,"estancada":41.8,"decadencia":16.9},{"variable":"Nivel educacional","categoria":"Básica","progresando":47.6,"estancada":36.2,"decadencia":16.2},{"variable":"Nivel educacional","categoria":"Media","progresando":42,"estancada":48.2,"decadencia":9.8},{"variable":"Nivel educacional","categoria":"Superior","progresando":46.4,"estancada":47.8,"decadencia":5.9}],"opciones":{"grupo":"variable","cat":"categoria","series":[{"campo":"progresando","nombre":"Progresando","color":"#6FD3E0"},{"campo":"estancada","nombre":"Estancada","color":"#5B6B78","colorTexto":"#E6EDF1"},{"campo":"decadencia","nombre":"En decadencia","color":"#E82D88"}]}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: Encuesta Barómetro Regional</span></p>
+</section>
+<section id="expectativas-de-oportunidades-a-futuro" class="slide level2">
+<h2>Expectativas de <em>oportunidades</em> a futuro</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Dentro de 10 años, ¿habrá más o menos oportunidades para trabajar en…? (%)</span><span class="panel-meta">Total regional</span></div><div class="echart" data-tipo="divergente" style="height:560px" role="img" aria-label="Expectativas de oportunidades laborales en diez años por área. Habrá más oportunidades: turismo 82 %, hidrógeno verde 78,5 %, comercio 65,2 %; pesca y empleo público solo 34 %."><script type="application/json">{"datos":[{"area":"Pesca","mas":34.4,"igual_menos":63.2,"magallanes":34,"resto":34.9},{"area":"Empleo en el sector público","mas":34.7,"igual_menos":63,"magallanes":31,"resto":40.2},{"area":"Agricultura y derivados","mas":37.6,"igual_menos":60.9,"magallanes":37.4,"resto":37.8},{"area":"Ganadería y derivados","mas":43.4,"igual_menos":55.2,"magallanes":42,"resto":45.4},{"area":"Petróleo, hidrocarburos y derivados","mas":46.2,"igual_menos":50,"magallanes":50.4,"resto":39.9},{"area":"Comercio","mas":65.2,"igual_menos":33.6,"magallanes":63.3,"resto":68.1},{"area":"Hidrógeno verde y derivados","mas":78.5,"igual_menos":17.2,"magallanes":83.4,"resto":71.1},{"area":"Turismo","mas":82,"igual_menos":17.5,"magallanes":79.9,"resto":85.3}],"opciones":{"cat":"area","der":{"campo":"mas","nombre":"Más oportunidades"},"izq":{"campo":"igual_menos","nombre":"Igual o menos oportunidades"}}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: Encuesta Barómetro Regional</span></p>
+</section>
+<section id="expectativas-según-provincia" class="slide level2">
+<h2>Expectativas según <em>provincia</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Habrá más oportunidades para trabajar en… (%)</span><span class="panel-meta">Prov. de Magallanes vs. resto de la región</span></div><div class="echart" data-tipo="dumbbell" style="height:560px" role="img" aria-label="Porcentaje que espera más oportunidades por área, provincia de Magallanes frente al resto de la región. En hidrógeno verde, 83,4 % en Magallanes y 71,1 % en el resto."><script type="application/json">{"datos":[{"area":"Pesca","mas":34.4,"igual_menos":63.2,"magallanes":34,"resto":34.9},{"area":"Empleo en el sector público","mas":34.7,"igual_menos":63,"magallanes":31,"resto":40.2},{"area":"Agricultura y derivados","mas":37.6,"igual_menos":60.9,"magallanes":37.4,"resto":37.8},{"area":"Ganadería y derivados","mas":43.4,"igual_menos":55.2,"magallanes":42,"resto":45.4},{"area":"Petróleo, hidrocarburos y derivados","mas":46.2,"igual_menos":50,"magallanes":50.4,"resto":39.9},{"area":"Comercio","mas":65.2,"igual_menos":33.6,"magallanes":63.3,"resto":68.1},{"area":"Hidrógeno verde y derivados","mas":78.5,"igual_menos":17.2,"magallanes":83.4,"resto":71.1},{"area":"Turismo","mas":82,"igual_menos":17.5,"magallanes":79.9,"resto":85.3}],"opciones":{"cat":"area","a":"resto","b":"magallanes","la":"Resto de la región","lb":"Provincia de Magallanes","orden":false,"direccional":false,"colorA":"#6FD3E0","colorB":"#E82D88","unidad":" %","min":25,"max":100,"tam":19}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: Encuesta Barómetro Regional · Δ pp: Magallanes menos resto de la región</span></p>
+</section>
+<section id="la-polarización-social-de-las-expectativas" class="slide level2">
+<h2>La polarización social de las <em>expectativas</em></h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="panel"><div class="panel-cab"><span class="panel-id">Análisis de correspondencias múltiples · percepción de progreso y posición social</span><span class="panel-meta">Dim. 1 19,4 % · Dim. 2 11,8 %</span></div><div class="echart" data-tipo="acm" style="height:560px" role="img" aria-label="Análisis de correspondencias múltiples con tres grupos. Progresando se asocia a clase alta, ABC1, educación superior, clase media y 30 a 44 años; estancada a C2, C3, educación media, 18 a 29 y 45 a 59 años; en decadencia a D+E, clase trabajadora, educación básica y mayores de 60."><script type="application/json">{"datos":[{"categoria":"Progresando","variable":"Percepción","dim1":-0.1,"dim2":0.24,"grupo":"Progreso"},{"categoria":"Clase Alta","variable":"Clase social","dim1":-0.38,"dim2":1.35,"grupo":"Progreso"},{"categoria":"ABC1","variable":"GSE","dim1":-0.87,"dim2":0.55,"grupo":"Progreso"},{"categoria":"Educación superior","variable":"Educación","dim1":-0.73,"dim2":0.24,"grupo":"Progreso"},{"categoria":"Clase Media","variable":"Clase social","dim1":-0.58,"dim2":-0.09,"grupo":"Progreso"},{"categoria":"30-44","variable":"Edad","dim1":-0.63,"dim2":-0.11,"grupo":"Progreso"},{"categoria":"Estancada","variable":"Percepción","dim1":-0.11,"dim2":-0.4,"grupo":"Estancamiento"},{"categoria":"C2","variable":"GSE","dim1":-0.32,"dim2":-0.48,"grupo":"Estancamiento"},{"categoria":"45-59","variable":"Edad","dim1":0.34,"dim2":-0.35,"grupo":"Estancamiento"},{"categoria":"C3","variable":"GSE","dim1":0.31,"dim2":-0.68,"grupo":"Estancamiento"},{"categoria":"Educación media","variable":"Educación","dim1":0.46,"dim2":-0.68,"grupo":"Estancamiento"},{"categoria":"18-29","variable":"Edad","dim1":0.18,"dim2":-0.83,"grupo":"Estancamiento"},{"categoria":"En decadencia","variable":"Percepción","dim1":1.29,"dim2":1.22,"grupo":"Decadencia"},{"categoria":"60+","variable":"Edad","dim1":0.54,"dim2":0.99,"grupo":"Decadencia"},{"categoria":"Educación básica","variable":"Educación","dim1":1.6,"dim2":1.28,"grupo":"Decadencia"},{"categoria":"D+E","variable":"GSE","dim1":1.4,"dim2":0.2,"grupo":"Decadencia"},{"categoria":"Clase Trabajadora","variable":"Clase social","dim1":1.13,"dim2":-0.26,"grupo":"Decadencia"}],"opciones":{"dim1":"Dimensión 1 (19,4 %)","dim2":"Dimensión 2 (11,8 %)"}}</script></div></div>
+</div>
+</div>
+<p><span class="fuente">Fuente: Encuesta Barómetro Regional · elaboración propia</span></p>
+<aside class="notes">
+<p>Tres polos: progreso (clase alta, ABC1, educación superior), estancamiento (C2, C3, educación media, 18–29 y 45–59) y decadencia (D+E, clase trabajadora, educación básica, 60+).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-13" class="slide level2 center">
+<h2></h2>
+<div class="frase">
+<p>Desafíos urgentes <span class="fragment custom subrayar">en tiempos de <em>incertidumbre</em>.</span></p>
+</div>
+</section>
+<section id="section-14" class="slide level2 center sin-logo cierre-slide" data-background-image="assets/images/boletin/contraportada.jpg" data-background-size="cover" data-background-color="#0B1117" data-background-opacity="0.72">
+<h2></h2>
+<p><span class="cierre-titulo">Muchas <em>gracias</em></span></p>
+<div class="contacto">
+<div>
+<p><span class="etiqueta">Contacto</span></p>
+<p>Marcelo Miño Ortiz<br>
+<a href="mailto:marcelo.mino@umag.cl">marcelo.mino@umag.cl</a></p>
+</div>
+<div>
+<p><span class="etiqueta">Unidad</span></p>
+<p>Unidad de Estudios Regionales<br>
+Universidad de Magallanes</p>
+</div>
+<div>
+<p><span class="etiqueta">Evento</span></p>
+<p>II Jornadas de Estudios del Trabajo<br>
+Punta Arenas, 5 de junio de 2025</p>
+</div>
+</div>
+<div class="logos-cierre">
+<p><img data-src="assets/logos/uer_blanco.png" alt="Unidad de Estudios Regionales, Universidad de Magallanes"></p>
+</div>
+<p><span class="credito">Contraportada · Boletín de Estudios Regionales N°2</span></p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="assets/logos/uer_blanco.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>II Jornadas de Estudios del Trabajo / UER-UMAG</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="brechas_sociolaborales_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="brechas_sociolaborales_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "cubic-bezier(0.65, 0, 0.35, 1)",
+'autoAnimateDuration': 0.9,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script>
+    /* ── Plantilla UMAG impacto ────────────────────────────────────────────────
+       1. Contadores animados:  [132297]{.countup data-to="132297" data-decimals="0"}
+          El texto escrito en el .qmd es el valor final (se ve igual en PDF/sin JS).
+       2. Logos en la portada.
+       3. Redimensiona widgets (leaflet, plotly) al entrar a su slide.
+       ───────────────────────────────────────────────────────────────────────── */
+    (function () {
+      var reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function formatear(v, dec) {
+        return v.toLocaleString('es-CL', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+      }
+
+      function contar(el) {
+        var hasta = parseFloat(el.dataset.to);
+        var dec = parseInt(el.dataset.decimals || '0', 10);
+        var dur = parseInt(el.dataset.duration || '1800', 10);
+        if (isNaN(hasta)) return;
+        if (reducir) { el.textContent = formatear(hasta, dec); return; }
+        var t0 = performance.now();
+        function paso(t) {
+          var p = Math.min((t - t0) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 4);           // ease-out
+          el.textContent = formatear(hasta * e, dec);
+          if (p < 1) requestAnimationFrame(paso);
+        }
+        requestAnimationFrame(paso);
+      }
+
+      function contadoresVisibles(slide) {
+        if (!slide) return;
+        slide.querySelectorAll('.countup').forEach(function (el) {
+          var frag = el.closest('.fragment');
+          if (!frag || frag.classList.contains('visible')) contar(el);
+        });
+      }
+
+      function logosPortada() {
+        var reveal = document.querySelector('.reveal');
+        if (!document.getElementById('title-slide') || reveal.querySelector(':scope > .logos-portada')) return;
+        var div = document.createElement('div');
+        div.className = 'logos-portada';
+        div.innerHTML =
+          '<img src="assets/logos/uer_blanco.png" alt="Unidad de Estudios Regionales, Universidad de Magallanes">';
+        reveal.appendChild(div);   // visible solo en la portada (ver tema)
+      }
+
+      // Video de portada: póster local mientras carga; con movimiento reducido queda detenido en el póster
+      var POSTER = 'assets/images/portada_video.jpg';
+      // Velocidad: data-video-velocidad en title-slide-attributes (1 = normal)
+      function velocidadVideo() {
+        var portada = document.getElementById('title-slide');
+        var vel = portada ? parseFloat(portada.dataset.videoVelocidad) : NaN;
+        return isNaN(vel) || vel <= 0 ? 1 : vel;
+      }
+
+      function videoPortada() {
+        var vel = velocidadVideo();
+        document.querySelectorAll('.backgrounds video').forEach(function (v) {
+          if (!v.getAttribute('poster')) v.setAttribute('poster', POSTER);
+          v.defaultPlaybackRate = vel;
+          v.playbackRate = vel;
+          if (!v.dataset.velocidad) {
+            // el navegador reinicia la velocidad al cargar o al volver a la portada
+            v.dataset.velocidad = '1';
+            ['loadedmetadata', 'play'].forEach(function (ev) {
+              v.addEventListener(ev, function () { v.playbackRate = velocidadVideo(); });
+            });
+          }
+          v.setAttribute('playsinline', '');
+          if (reducir && !v.dataset.quieto) {
+            // reveal vuelve a llamar play() al mostrar la portada: se detiene cada vez
+            v.dataset.quieto = '1';
+            v.removeAttribute('autoplay');
+            v.addEventListener('play', function () { v.pause(); });
+            v.pause();
+          }
+        });
+      }
+
+      function iniciar() {
+        logosPortada();
+        videoPortada();
+        if (reducir) {
+          // movimiento reducido: sin transiciones ni vuelo auto-animate
+          Reveal.configure({ transition: 'none', backgroundTransition: 'none', autoAnimate: false });
+          videoPortada();   // configure() recrea los fondos
+        }
+        Reveal.on('slidechanged', function (e) {
+          videoPortada();
+          contadoresVisibles(e.currentSlide);
+          window.dispatchEvent(new Event('resize'));
+        });
+        Reveal.on('fragmentshown', function (e) {
+          e.fragments.forEach(function (f) {
+            if (f.classList.contains('countup')) contar(f);
+            f.querySelectorAll('.countup').forEach(contar);
+          });
+        });
+        contadoresVisibles(Reveal.getCurrentSlide());
+        // Re-medir widgets cuando Asap termina de cargar (evita leyendas cortadas)
+        if (document.fonts) document.fonts.ready.then(function () {
+          window.dispatchEvent(new Event('resize'));
+        });
+      }
+
+      function cuandoListo() {
+        if (typeof Reveal === 'undefined') return setTimeout(cuandoListo, 50);
+        if (Reveal.isReady()) iniciar(); else Reveal.on('ready', iniciar);
+      }
+      cuandoListo();
+    })();
+    </script>
+    <!-- ECharts 6.0.0 (Apache-2.0) servido localmente: la presentación funciona sin internet -->
+    <script src="assets/js/echarts.min.js"></script>
+    <script src="assets/js/graficos.js"></script>
+    <script src="assets/js/hud.js"></script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

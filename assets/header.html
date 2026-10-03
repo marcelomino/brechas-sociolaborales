@@ -1,0 +1,23 @@
+<!-- Fuentes locales (assets/fonts/): la presentación funciona sin internet -->
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<!-- Motivos de paisaje del tema «austral» (R/motivos_paisaje.R). Van aquí porque
+     las rutas url() del SCSS compilado no apuntan a assets/. -->
+<style>
+  .reveal-viewport { background-color: #0B1117; }
+  .reveal-viewport::before,
+  .reveal-viewport::after { content: ""; position: fixed; left: 0; right: 0; pointer-events: none; z-index: 0; }
+  /* curvas de nivel, más visibles hacia los bordes */
+  .reveal-viewport::before {
+    top: 0; bottom: 0;
+    background: url(assets/images/topo.svg) center / cover no-repeat;
+    opacity: 0.09;
+    -webkit-mask-image: radial-gradient(ellipse 70% 65% at 45% 50%, transparent 20%, #000 95%);
+            mask-image: radial-gradient(ellipse 70% 65% at 45% 50%, transparent 20%, #000 95%);
+  }
+  /* horizonte del Paine en el borde inferior */
+  .reveal-viewport::after {
+    bottom: 0; height: 12vh;
+    background: url(assets/images/horizonte.svg) bottom / 100% 100% no-repeat;
+    opacity: 0.55;
+  }
+</style>

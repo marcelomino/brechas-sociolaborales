@@ -1,0 +1,114 @@
+<script>
+/* ── Plantilla UMAG impacto ────────────────────────────────────────────────
+   1. Contadores animados:  [132297]{.countup data-to="132297" data-decimals="0"}
+      El texto escrito en el .qmd es el valor final (se ve igual en PDF/sin JS).
+   2. Logos en la portada.
+   3. Redimensiona widgets (leaflet, plotly) al entrar a su slide.
+   ───────────────────────────────────────────────────────────────────────── */
+(function () {
+  var reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function formatear(v, dec) {
+    return v.toLocaleString('es-CL', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  }
+
+  function contar(el) {
+    var hasta = parseFloat(el.dataset.to);
+    var dec = parseInt(el.dataset.decimals || '0', 10);
+    var dur = parseInt(el.dataset.duration || '1800', 10);
+    if (isNaN(hasta)) return;
+    if (reducir) { el.textContent = formatear(hasta, dec); return; }
+    var t0 = performance.now();
+    function paso(t) {
+      var p = Math.min((t - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 4);           // ease-out
+      el.textContent = formatear(hasta * e, dec);
+      if (p < 1) requestAnimationFrame(paso);
+    }
+    requestAnimationFrame(paso);
+  }
+
+  function contadoresVisibles(slide) {
+    if (!slide) return;
+    slide.querySelectorAll('.countup').forEach(function (el) {
+      var frag = el.closest('.fragment');
+      if (!frag || frag.classList.contains('visible')) contar(el);
+    });
+  }
+
+  function logosPortada() {
+    var reveal = document.querySelector('.reveal');
+    if (!document.getElementById('title-slide') || reveal.querySelector(':scope > .logos-portada')) return;
+    var div = document.createElement('div');
+    div.className = 'logos-portada';
+    div.innerHTML =
+      '<img src="assets/logos/uer_blanco.png" alt="Unidad de Estudios Regionales, Universidad de Magallanes">';
+    reveal.appendChild(div);   // visible solo en la portada (ver tema)
+  }
+
+  // Video de portada: póster local mientras carga; con movimiento reducido queda detenido en el póster
+  var POSTER = 'assets/images/portada_video.jpg';
+  // Velocidad: data-video-velocidad en title-slide-attributes (1 = normal)
+  function velocidadVideo() {
+    var portada = document.getElementById('title-slide');
+    var vel = portada ? parseFloat(portada.dataset.videoVelocidad) : NaN;
+    return isNaN(vel) || vel <= 0 ? 1 : vel;
+  }
+
+  function videoPortada() {
+    var vel = velocidadVideo();
+    document.querySelectorAll('.backgrounds video').forEach(function (v) {
+      if (!v.getAttribute('poster')) v.setAttribute('poster', POSTER);
+      v.defaultPlaybackRate = vel;
+      v.playbackRate = vel;
+      if (!v.dataset.velocidad) {
+        // el navegador reinicia la velocidad al cargar o al volver a la portada
+        v.dataset.velocidad = '1';
+        ['loadedmetadata', 'play'].forEach(function (ev) {
+          v.addEventListener(ev, function () { v.playbackRate = velocidadVideo(); });
+        });
+      }
+      v.setAttribute('playsinline', '');
+      if (reducir && !v.dataset.quieto) {
+        // reveal vuelve a llamar play() al mostrar la portada: se detiene cada vez
+        v.dataset.quieto = '1';
+        v.removeAttribute('autoplay');
+        v.addEventListener('play', function () { v.pause(); });
+        v.pause();
+      }
+    });
+  }
+
+  function iniciar() {
+    logosPortada();
+    videoPortada();
+    if (reducir) {
+      // movimiento reducido: sin transiciones ni vuelo auto-animate
+      Reveal.configure({ transition: 'none', backgroundTransition: 'none', autoAnimate: false });
+      videoPortada();   // configure() recrea los fondos
+    }
+    Reveal.on('slidechanged', function (e) {
+      videoPortada();
+      contadoresVisibles(e.currentSlide);
+      window.dispatchEvent(new Event('resize'));
+    });
+    Reveal.on('fragmentshown', function (e) {
+      e.fragments.forEach(function (f) {
+        if (f.classList.contains('countup')) contar(f);
+        f.querySelectorAll('.countup').forEach(contar);
+      });
+    });
+    contadoresVisibles(Reveal.getCurrentSlide());
+    // Re-medir widgets cuando Asap termina de cargar (evita leyendas cortadas)
+    if (document.fonts) document.fonts.ready.then(function () {
+      window.dispatchEvent(new Event('resize'));
+    });
+  }
+
+  function cuandoListo() {
+    if (typeof Reveal === 'undefined') return setTimeout(cuandoListo, 50);
+    if (Reveal.isReady()) iniciar(); else Reveal.on('ready', iniciar);
+  }
+  cuandoListo();
+})();
+</script>
